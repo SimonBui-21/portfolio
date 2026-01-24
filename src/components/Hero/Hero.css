@@ -1,3 +1,4 @@
 .hero {
-  background: var(--gradient-hero);
+  /* background: var(--gradient-hero); */
+  min-height: 65vh;
 }
