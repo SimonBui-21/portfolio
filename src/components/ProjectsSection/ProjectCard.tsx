@@ -16,7 +16,7 @@ export function ProjectCard({
   link,
 }: ProjectCardProps) {
   return (
-    <Card>
+    <Card className="transition-all duration-300 hover:shadow-xl hover:-translate-y-2 dark:hover:border-neutral-500 cursor-pointer">
       <CardHeader>
         <CardTitle>{title}</CardTitle>
       </CardHeader>
