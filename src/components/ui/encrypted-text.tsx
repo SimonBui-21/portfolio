@@ -32,6 +32,22 @@ function generateRandomCharacter(charset: string): string {
   return charset.charAt(index);
 }
 
+function generateDeterministicGibberish(
+  original: string,
+  charset: string,
+): string {
+  if (!original) return "";
+  let result = "";
+  for (let i = 0; i < original.length; i += 1) {
+    const ch = original[i];
+    result +=
+      ch === " "
+        ? " "
+        : charset.charAt((ch.charCodeAt(0) + i) % charset.length);
+  }
+  return result;
+}
+
 function generateGibberishPreservingSpaces(
   original: string,
   charset: string,
@@ -62,7 +78,7 @@ export const EncryptedText: React.FC<EncryptedTextProps> = ({
   const startTimeRef = useRef<number>(0);
   const lastFlipTimeRef = useRef<number>(0);
   const scrambleCharsRef = useRef<string[]>(
-    text ? generateGibberishPreservingSpaces(text, charset).split("") : [],
+    text ? generateDeterministicGibberish(text, charset).split("") : [],
   );
 
   useEffect(() => {
